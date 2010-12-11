@@ -1,4 +1,4 @@
 mongo-java-driver	2.3
-mongo-rhino			r38
+mongo-rhino			r41
 ext-js				3.3.1
 gritter				r6.16.2010
