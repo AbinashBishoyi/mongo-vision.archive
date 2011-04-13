@@ -1,2 +1,4 @@
-ext-js				3.3.1
-gritter				r6.16.2010
+ext-js					3.3.1
+gritter					r6.16.2010
+mongodb-java-driver		2.5.3
+mongodb-rhino-driver	R87
