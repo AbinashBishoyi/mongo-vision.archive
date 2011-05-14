@@ -81,8 +81,7 @@
         _custom_timer: 0,
         _item_count: 0,
         _is_setup: 0,
-        _tpl_close: '<div class="gritter-close"></div>',
-        _tpl_item: '<div id="gritter-item-[[number]]" class="gritter-item-wrapper [[item_class]]" style="display:none"><div class="gritter-top"></div><div class="gritter-item">[[image]]<div class="[[class_name]]"><span class="gritter-title">[[username]]</span><p>[[text]]</p></div><div style="clear:both"></div></div><div class="gritter-bottom"></div></div>',
+        _tpl_item: '<div id="gritter-item-[[number]]" class="gritter-item-wrapper [[item_class]]" style="opacity:0"><div class="gritter-top"></div><div class="gritter-item">[[image]]<div class="[[class_name]]"><span class="gritter-title">[[username]]</span><p>[[text]]</p></div><div style="clear:both"></div></div><div class="gritter-bottom"></div></div>',
         _tpl_wrap: '<div id="gritter-notice-wrapper"></div>',
 
         /**
@@ -237,17 +236,17 @@
                 // it means effect stopped by `stopFx()' considered 'completed'
                 e.ghost('t', {
                     endOpacity: 0,
-                    easing: 'easeNone',
+                    //easing: 'easeNone',
                     duration: fade_out_speed,
                     callback: function() {
                         // if the effect was stopped by `mouseenter` event (by calling `stopFx()`),
                         // then the div should be visible as `item.show()` was called after a short time
                         // (next line, see line 166, 167)
-                        (function(){
+                        Ext.defer(function(){
                             if (!e.isVisible()) {
                                 Gritter._countRemoveWrapper(unique_id, e);
                             }
-                        }).defer(10);
+                        }, 10);
                     }
                 });
         }
@@ -296,9 +295,9 @@
 		*/
     _setFadeTimer: function(e, unique_id){
         var timer_str = (this._custom_timer) ? this._custom_timer : this.time;
-        this['_int_id_' + unique_id] = (function(){
+        this['_int_id_' + unique_id] = Ext.defer(function(){
             Gritter._fade(e, unique_id);
-        }).defer(timer_str);
+        }, timer_str);
     },
 
     /**
