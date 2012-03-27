@@ -1,3 +1,0 @@
-ext-js					4.0.2
-gritter					r6.16.2010
-mongodb-rhino-driver	R96
